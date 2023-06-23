@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import IncomeTable from './IncomeTable';
 import ExpenseTable from './ExpenseTable';
-import SummaryFinances from './SummaryFinances';
+import SummaryFinance from './SummaryFinance'
 
 const FinanceApp = () => {
   const [income, setIncome] = useState([]);
@@ -99,7 +99,7 @@ const FinanceApp = () => {
       </div>
       <IncomeTable income={income} />
       <ExpenseTable expense={expense} />
-      <SummaryFinances
+      <SummaryFinance
         totalIncome={totalIncome}
         totalExpense={totalExpense}
         remainingAmount={remainingAmount}

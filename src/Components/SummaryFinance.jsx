@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SummaryFinances = ({ totalIncome, totalExpense, remainingAmount }) => {
+const SummaryFinance = ({ totalIncome, totalExpense, remainingAmount }) => {
   return (
     <div>
       <h2>Summary</h2>
@@ -11,4 +11,4 @@ const SummaryFinances = ({ totalIncome, totalExpense, remainingAmount }) => {
   );
 };
 
-export default SummaryFinances;
+export default SummaryFinance;
