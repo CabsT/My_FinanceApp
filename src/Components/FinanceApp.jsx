@@ -87,7 +87,7 @@ const FinanceApp = () => {
   };
 
   return (
-    <div className="bg-cover bg-background h-screen w-screen flex items-center justify-center">
+    <div className=" flex items-center justify-center container mx-auto">
     <div>
       <h1>Income and Expense Tracker</h1>
       <div>
