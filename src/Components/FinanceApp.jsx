@@ -14,8 +14,11 @@ const FinanceApp = () => {
   const [expenseMessage, setExpenseMessage] = useState('');
 
   useEffect(() => {
+    const heading = document.querySelector(".fade-in");
+    heading.classList.add("animate");
     calculateRemainingAmount();
   }, [income, expense]);
+
 
   // Create tables in local storage
   useEffect(() => {
@@ -108,7 +111,7 @@ const FinanceApp = () => {
     <div className=" container flex items-center justify-center">
       <div>
         <div className='pb-12'>
-          <h1 className=" text-6xl font-bold text-blue-700">Income and Expense Tracker</h1>
+          <h1 className=" text-6xl font-bold text-blue-700 fade-in">Income and Expense Tracker</h1>
         </div>
         <div className='pb-6'>
           <h2 className='font-bold text-4xl pb-2'>My Income:</h2>
