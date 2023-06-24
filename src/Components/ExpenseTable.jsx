@@ -2,13 +2,13 @@ import React from 'react';
 
 const ExpenseTable = ({ expense }) => {
   return (
-    <div>
-      <h2>Expense</h2>
+    <div className='pb-6'>
+      <h2 className='text-4xl font-bold'>Expenses</h2>
       <table>
         <thead>
           <tr>
-            <th>Description</th>
-            <th>Amount in Rand</th>
+            <th className='text-3xl font-bold  text-blue-700 pr-20'>Description:</th>
+            <th className='text-3xl font-bold  text-blue-700'>Amount in Rand:</th>
           </tr>
         </thead>
         <tbody>

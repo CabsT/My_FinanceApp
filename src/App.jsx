@@ -5,7 +5,7 @@ function App() {
   
 
   return (
-    <div className="bg-cover bg-background h-screen w-screen">
+    <div className="bg-cover bg-background min-h-screen border-4 border-sky-500">
      <FinanceApp/>
     </div>
   )

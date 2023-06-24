@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
 const IncomeTable = ({ income }) => {
   return (
-    <div>
-      <h2>Income</h2>
-      <table>
+    <div className="pb-6">
+      <h2 className='text-4xl font-bold'>Income</h2>
+      <table className="">
         <thead>
           <tr>
-            <th>Description</th>
-            <th>Amount in Rand</th>
+            <th className='text-3xl font-bold text-blue-700 pr-20'>Description:</th>
+            <th className='text-3xl font-bold  text-blue-700'>Amount in Rand:</th>
           </tr>
         </thead>
         <tbody>

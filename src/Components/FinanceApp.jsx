@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import IncomeTable from './IncomeTable';
 import ExpenseTable from './ExpenseTable';
-import SummaryFinance from './SummaryFinance'
+import SummaryFinances from './SummaryFinance';
 
 const FinanceApp = () => {
   const [income, setIncome] = useState([]);
@@ -9,6 +9,7 @@ const FinanceApp = () => {
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalExpense, setTotalExpense] = useState(0);
   const [remainingAmount, setRemainingAmount] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     calculateRemainingAmount();
@@ -37,20 +38,20 @@ const FinanceApp = () => {
     const amountInput = parseFloat(prompt('Amount in Rand'));
     const amount = parseFloat(amountInput);
 
-  if (!isNaN(amount)) {
-    const newIncome = {
-      id: Date.now(),
-      description,
-      amount,
-    };
+    if (!isNaN(amount)) {
+      const newIncome = {
+        id: Date.now(),
+        description,
+        amount,
+      };
 
-    const updatedIncome = [...income, newIncome];
-    localStorage.setItem('income', JSON.stringify(updatedIncome));
-    setIncome(updatedIncome);
-    console.log('Income added successfully!');
-  } else {
-    console.log('Invalid amount. Please enter a valid number.');
-  }
+      const updatedIncome = [...income, newIncome];
+      localStorage.setItem('income', JSON.stringify(updatedIncome));
+      setIncome(updatedIncome);
+      console.log('Income added successfully!');
+    } else {
+      console.log('Invalid amount. Please enter a valid number.');
+    }
   };
 
   // Add expense to local storage
@@ -59,20 +60,20 @@ const FinanceApp = () => {
     const amountInput = parseFloat(prompt('Amount in Rand:'));
     const amount = parseFloat(amountInput);
 
-  if (!isNaN(amount)) {
-    const newExpense = {
-      id: Date.now(),
-      description,
-      amount,
-    };
+    if (!isNaN(amount)) {
+      const newExpense = {
+        id: Date.now(),
+        description,
+        amount,
+      };
 
-    const updatedExpense = [...expense, newExpense];
-    localStorage.setItem('expense', JSON.stringify(updatedExpense));
-    setExpense(updatedExpense);
-    console.log('Expense added successfully!');
-  } else {
-    console.log('Invalid amount. Please enter a valid number.');
-  }
+      const updatedExpense = [...expense, newExpense];
+      localStorage.setItem('expense', JSON.stringify(updatedExpense));
+      setExpense(updatedExpense);
+      console.log('Expense added successfully!');
+    } else {
+      console.log('Invalid amount. Please enter a valid number.');
+    }
   };
 
   // Calculate the remaining amount of money
@@ -86,26 +87,52 @@ const FinanceApp = () => {
     setRemainingAmount(remaining);
   };
 
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
-    <div className=" flex items-center justify-center container mx-auto">
-    <div>
-      <h1>Income and Expense Tracker</h1>
+    <div className=" container flex items-center justify-center">
       <div>
-        <h2>Add Income</h2>
-        <button  className= "rounded-3xl border-solid border-black bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={addIncome}>Add Income</button>
+        <div className='pb-12'>
+          <h1 className="text-6xl font-bold text-blue-700">Income and Expense Tracker</h1>
+        </div>
+        <div className='pb-6'>
+          <h2 className='font-bold text-4xl'>My Income:</h2>
+          <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4" onClick={addIncome}>Add Income</button>
+        </div>
+        <div className='pb-6'>
+          <h2 className='font-bold text-4xl'>My Expenses:</h2>
+          <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400  text-white font-bold py-2 px-4" onClick={addExpense}>
+            Add Expense
+          </button>
+        </div>
+        <div>
+        <h2 className='font-bold text-4xl'>Summary of Finances:</h2>
+          <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 " onClick={() => setShowPopup(true)}>
+            Open
+          </button>
+
+          {showPopup && (
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg p-4 shadow-md">
+                <div className="pb-6">
+                  <IncomeTable income={income} />
+                  <ExpenseTable expense={expense} />
+                  <SummaryFinances
+                    totalIncome={totalIncome}
+                    totalExpense={totalExpense}
+                    remainingAmount={remainingAmount}
+                  />
+                </div>
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-md" onClick={closePopup}>
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      <div>
-        <h2>Add Expense</h2>
-        <button  className= "rounded-3xl border-solid border-black bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={addExpense}>Add Expense</button>
-      </div>
-      <IncomeTable income={income} />
-      <ExpenseTable expense={expense} />
-      <SummaryFinance
-        totalIncome={totalIncome}
-        totalExpense={totalExpense}
-        remainingAmount={remainingAmount}
-      />
-    </div>
     </div>
   );
 };
