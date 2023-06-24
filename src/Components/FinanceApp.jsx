@@ -87,15 +87,16 @@ const FinanceApp = () => {
   };
 
   return (
+    <div className="bg-cover bg-background h-screen w-screen flex items-center justify-center">
     <div>
       <h1>Income and Expense Tracker</h1>
       <div>
         <h2>Add Income</h2>
-        <button onClick={addIncome}>Add Income</button>
+        <button  className= "rounded-3xl border-solid border-black bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={addIncome}>Add Income</button>
       </div>
       <div>
         <h2>Add Expense</h2>
-        <button onClick={addExpense}>Add Expense</button>
+        <button  className= "rounded-3xl border-solid border-black bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={addExpense}>Add Expense</button>
       </div>
       <IncomeTable income={income} />
       <ExpenseTable expense={expense} />
@@ -104,6 +105,7 @@ const FinanceApp = () => {
         totalExpense={totalExpense}
         remainingAmount={remainingAmount}
       />
+    </div>
     </div>
   );
 };
