@@ -10,6 +10,8 @@ const FinanceApp = () => {
   const [totalExpense, setTotalExpense] = useState(0);
   const [remainingAmount, setRemainingAmount] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
+  const [incomeMessage, setIncomeMessage] = useState('');
+  const [expenseMessage, setExpenseMessage] = useState('');
 
   useEffect(() => {
     calculateRemainingAmount();
@@ -48,9 +50,15 @@ const FinanceApp = () => {
       const updatedIncome = [...income, newIncome];
       localStorage.setItem('income', JSON.stringify(updatedIncome));
       setIncome(updatedIncome);
-      console.log('Income added successfully!');
+      setIncomeMessage('Income added successfully!');
+
+       // Clear the message after 2 seconds
+    setTimeout(() => {
+      setIncomeMessage('');
+    }, 3000);
+
     } else {
-      console.log('Invalid amount. Please enter a valid number.');
+      setIncomeMessage('Invalid amount. Please enter a valid number.');
     }
   };
 
@@ -70,9 +78,14 @@ const FinanceApp = () => {
       const updatedExpense = [...expense, newExpense];
       localStorage.setItem('expense', JSON.stringify(updatedExpense));
       setExpense(updatedExpense);
-      console.log('Expense added successfully!');
+      setExpenseMessage('Expense added successfully!');
+
+      setTimeout(() => {
+        setExpenseMessage('');
+      }, 3000);
+
     } else {
-      console.log('Invalid amount. Please enter a valid number.');
+      setExpenseMessage('Invalid amount. Please enter a valid number.');
     }
   };
 
@@ -100,15 +113,17 @@ const FinanceApp = () => {
         <div className='pb-6'>
           <h2 className='font-bold text-4xl'>My Income:</h2>
           <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4" onClick={addIncome}>Add Income</button>
+          {incomeMessage && <p>{incomeMessage}</p>}
         </div>
         <div className='pb-6'>
           <h2 className='font-bold text-4xl'>My Expenses:</h2>
           <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400  text-white font-bold py-2 px-4" onClick={addExpense}>
             Add Expense
           </button>
+          {expenseMessage && <p>{expenseMessage}</p>}
         </div>
         <div>
-        <h2 className='font-bold text-4xl'>Summary of Finances:</h2>
+          <h2 className='font-bold text-4xl'>Summary of Finances:</h2>
           <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 " onClick={() => setShowPopup(true)}>
             Open
           </button>
