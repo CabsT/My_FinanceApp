@@ -108,23 +108,23 @@ const FinanceApp = () => {
     <div className=" container flex items-center justify-center">
       <div>
         <div className='pb-12'>
-          <h1 className="text-6xl font-bold text-blue-700">Income and Expense Tracker</h1>
+          <h1 className=" text-6xl font-bold text-blue-700">Income and Expense Tracker</h1>
         </div>
         <div className='pb-6'>
-          <h2 className='font-bold text-4xl'>My Income:</h2>
-          <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4" onClick={addIncome}>Add Income</button>
+          <h2 className='font-bold text-4xl pb-2'>My Income:</h2>
+          <button className="rounded-3xl border-solid border-black transition ease-in-out delay-150 bg-blue-700 hover:-translate-y-1 hover:scale-110 hover:bg-blue-400 duration-300 text-white font-bold py-2 px-4" onClick={addIncome}>Add Income</button>
           {incomeMessage && <p>{incomeMessage}</p>}
         </div>
         <div className='pb-6'>
-          <h2 className='font-bold text-4xl'>My Expenses:</h2>
-          <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400  text-white font-bold py-2 px-4" onClick={addExpense}>
+          <h2 className='font-bold text-4xl pb-2'>My Expenses:</h2>
+          <button className="rounded-3xl border-solid border-blacktransition ease-in-out delay-150 bg-blue-700 hover:-translate-y-1 hover:scale-110 hover:bg-blue-400 duration-300  text-white font-bold py-2 px-4" onClick={addExpense}>
             Add Expense
           </button>
           {expenseMessage && <p>{expenseMessage}</p>}
         </div>
         <div>
-          <h2 className='font-bold text-4xl'>Summary of Finances:</h2>
-          <button className="rounded-3xl border-solid border-black bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 " onClick={() => setShowPopup(true)}>
+          <h2 className='font-bold text-4xl pb-2'>Summary of Finances:</h2>
+          <button className=" rounded-3xl border-solid border-black transition ease-in-out delay-150 bg-blue-700 hover:-translate-y-1 hover:scale-110 hover:bg-blue-400 duration-300 text-white font-bold py-2 px-4 " onClick={() => setShowPopup(true)}>
             Open
           </button>
 
