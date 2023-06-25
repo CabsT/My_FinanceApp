@@ -55,7 +55,7 @@ const FinanceApp = () => {
       setIncome(updatedIncome);
       setIncomeMessage('Income added successfully!');
 
-       // Clear the message after 2 seconds
+       // Clear the message after 3 seconds
     setTimeout(() => {
       setIncomeMessage('');
     }, 3000);
@@ -91,6 +91,31 @@ const FinanceApp = () => {
       setExpenseMessage('Invalid amount. Please enter a valid number.');
     }
   };
+
+  
+  const removeIncome = (id) => {
+    const updatedIncome = income.filter((income) => income.id !== id);
+    localStorage.setItem('income', JSON.stringify(updatedIncome));
+    setIncome(updatedIncome);
+  };
+
+  const removeExpense = (id) => {
+    const updatedExpense = expense.filter((expense) => expense.id !== id);
+    localStorage.setItem('expense', JSON.stringify(updatedExpense));
+    setExpense(updatedExpense);
+  };
+
+  const clearData = () => {
+    localStorage.removeItem('income');
+    localStorage.removeItem('expense');
+    setIncome([]);
+    setExpense([]);
+    setTotalIncome(0);
+    setTotalExpense(0);
+    setRemainingAmount(0);
+  };
+
+
 
   // Calculate the remaining amount of money
   const calculateRemainingAmount = () => {
@@ -135,6 +160,8 @@ const FinanceApp = () => {
             <div className="fixed inset-0 flex items-center justify-center z-50">
               <div className="bg-white rounded-lg p-4 shadow-md">
                 <div className="pb-6">
+                <IncomeTable income={income} removeIncome={removeIncome} />
+                  <ExpenseTable expense={expense} removeExpense={removeExpense} />
                   <IncomeTable income={income} />
                   <ExpenseTable expense={expense} />
                   <SummaryFinances
@@ -143,12 +170,19 @@ const FinanceApp = () => {
                     remainingAmount={remainingAmount}
                   />
                 </div>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-md" onClick={closePopup}>
+                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md" onClick={closePopup}>
                   Close
                 </button>
               </div>
             </div>
           )}
+           </div>
+            <div className="py-6">
+              <button
+                className="rounded-3xl border-solid border-blacktransition ease-in-out delay-150 bg-red-700 hover:-translate-y-1 hover:scale-110 hover:bg-red-400 duration-300  text-white font-bold py-2 px-4"
+                onClick={clearData} >
+            Clear All Data
+          </button>
         </div>
       </div>
     </div>
