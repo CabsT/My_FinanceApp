@@ -20,7 +20,6 @@ const FinanceApp = () => {
   }, [income, expense]);
 
 
-  // Create tables in local storage
   useEffect(() => {
     const initialIncome = localStorage.getItem('income');
     if (!initialIncome) {
@@ -83,6 +82,7 @@ const FinanceApp = () => {
       setExpense(updatedExpense);
       setExpenseMessage('Expense added successfully!');
 
+    // Clear the message after 3 seconds
       setTimeout(() => {
         setExpenseMessage('');
       }, 3000);
@@ -92,7 +92,7 @@ const FinanceApp = () => {
     }
   };
 
-  
+  //Create function to clear all data related to income and expense
   const removeIncome = (id) => {
     const updatedIncome = income.filter((income) => income.id !== id);
     localStorage.setItem('income', JSON.stringify(updatedIncome));
