@@ -13,13 +13,17 @@ const FinanceApp = () => {
   const [incomeMessage, setIncomeMessage] = useState('');
   const [expenseMessage, setExpenseMessage] = useState('');
 
+  //Add animation class to the element and triggers the calculation of the remaining amount
   useEffect(() => {
     const heading = document.querySelector(".fade-in");
     heading.classList.add("animate");
     calculateRemainingAmount();
-  }, [income, expense]);
+  }, [income, expense])
 
 
+  // retrieves the value stored in the local storage with the key 'income' and assigns it to the variable initialIncome
+  // no value = initialise empty array and convert to string representation
+  // if value exist the JSON.parse() converts the stored string back into an array and then assigns the parsed array to a setIncome() function. 
   useEffect(() => {
     const initialIncome = localStorage.getItem('income');
     if (!initialIncome) {
@@ -28,6 +32,9 @@ const FinanceApp = () => {
       setIncome(JSON.parse(initialIncome));
     }
 
+  // retrieves the value stored in the local storage with the key 'expense' and assigns it to the variable initialExpense
+  // no value = initialise empty array and convert to string representation
+  // if value exist the JSON.parse() converts the stored string back into an array and then assigns the parsed array to a setExpense() function. 
     const initialExpense = localStorage.getItem('expense');
     if (!initialExpense) {
       localStorage.setItem('expense', JSON.stringify([]));
