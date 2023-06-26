@@ -169,8 +169,6 @@ const FinanceApp = () => {
                 <div className="pb-6">
                 <IncomeTable income={income} removeIncome={removeIncome} />
                   <ExpenseTable expense={expense} removeExpense={removeExpense} />
-                  <IncomeTable income={income} />
-                  <ExpenseTable expense={expense} />
                   <SummaryFinances
                     totalIncome={totalIncome}
                     totalExpense={totalExpense}
