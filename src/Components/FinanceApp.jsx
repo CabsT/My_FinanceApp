@@ -56,7 +56,7 @@ const FinanceApp = () => {
         amount,
       };
 
-      const updatedIncome = [income, newIncome];
+      const updatedIncome = [...income, newIncome];
       localStorage.setItem('income', JSON.stringify(updatedIncome));
       setIncome(updatedIncome);
       setIncomeMessage('Income added successfully!');
@@ -84,7 +84,7 @@ const FinanceApp = () => {
         amount,
       };
 
-      const updatedExpense = [expense, newExpense];
+      const updatedExpense = [...expense, newExpense];
       localStorage.setItem('expense', JSON.stringify(updatedExpense));
       setExpense(updatedExpense);
       setExpenseMessage('Expense added successfully!');
